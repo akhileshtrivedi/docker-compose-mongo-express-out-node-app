@@ -33,5 +33,5 @@ Step 3: access the js application from browser
     
 The dot "." at the end of the command denotes location of the Dockerfile.
 
-## continue  https://github.com/akhileshtrivedi/docker-compose-mongo-express-in-node-app#readme
+## Continue  https://github.com/akhileshtrivedi/docker-compose-mongo-express-in-node-app#readme
 
