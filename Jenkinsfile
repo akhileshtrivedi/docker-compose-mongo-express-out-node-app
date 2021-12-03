@@ -1,6 +1,6 @@
 def gvy
 
-CODE_CHANGES = getGitChanges()
+//CODE_CHANGES = getGitChanges()
 pipeline {
     agent any
     parameters {
@@ -16,11 +16,11 @@ pipeline {
             }
         }
         stage('Build') {
-            when {
-                expression {
-                    BRABCH_NAME == 'dev' && CODE_CHANGES == true
-                }
-            }
+            // when {
+            //     expression {
+            //         BRABCH_NAME == 'dev' && CODE_CHANGES == true
+            //     }
+            // }
             steps {
                 script {
                     gvy.buildApp()
