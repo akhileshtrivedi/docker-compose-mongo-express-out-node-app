@@ -8,7 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the application...'
-                echo "Bulding the application ${params.NEW_VERSION}"
+                echo "Bulding the application ${params.VERSION}"
             }
         }
         stage('Test') {
@@ -24,7 +24,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying the application...'
-                echo "Deploying with ${params.NEW_VERSION}"
+                echo "Deploying with ${params.VERSION}"
             }
         }
     }
