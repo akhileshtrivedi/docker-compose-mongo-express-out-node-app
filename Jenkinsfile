@@ -1,3 +1,5 @@
+def gvy
+
 pipeline {
     agent any
     parameters {
@@ -5,10 +7,18 @@ pipeline {
         booleanParam(name: 'executeTests', defaultValue: true, description: '')
     }
     stages {
+        stage('init') {
+            steps {
+                script{
+                    gvy = load "script.groovy"
+                }
+            }
+        }
         stage('Build') {
             steps {
-                echo 'Building the application...'
-                echo "Bulding the application ${params.VERSION}"
+                script {
+                    gvy.buildApp()
+                }
             }
         }
         stage('Test') {
@@ -18,13 +28,16 @@ pipeline {
                 }
             }
             steps {
-                echo 'Testing the application...'
+                script {
+                    gvy.testApp()
+                }
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying the application...'
-                echo "Deploying with ${params.VERSION}"
+                script {
+                    gvy.deployApp()
+                }
             }
         }
     }
