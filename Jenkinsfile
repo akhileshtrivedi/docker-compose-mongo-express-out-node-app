@@ -1,5 +1,6 @@
 def gvy
 
+CODE_CHANGES = getGitChanges()
 pipeline {
     agent any
     parameters {
@@ -15,6 +16,11 @@ pipeline {
             }
         }
         stage('Build') {
+            when {
+                expression {
+                    BRABCH_NAME == 'dev' && CODE_CHANGES == true
+                }
+            }
             steps {
                 script {
                     gvy.buildApp()
@@ -38,6 +44,18 @@ pipeline {
                 script {
                     gvy.deployApp()
                 }
+            }
+        }
+    }
+    post {
+        always {
+            //It is same as finaly in Java
+            echo 'Sending email whatever status of the build...'
+            success {
+                echo 'Deployed successfully the build...'
+            }
+            failure {
+                echo ' Not deployed successfully the build...'
             }
         }
     }
