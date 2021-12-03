@@ -51,12 +51,16 @@ pipeline {
         always {
             //It is same as finaly in Java
             echo 'Sending email whatever status of the build...'
-            success {
-                echo 'Deployed successfully the build...'
-            }
-            failure {
-                echo ' Not deployed successfully the build...'
-            }
         }
+        success {
+                echo 'Deployed successfully the build...'
+        }
+        failure {
+                echo 'Not deployed successfully the build...'
+        }
+        cleanup {
+                echo 'Cleaned up successfully the build...'
+        }
+
     }
 }
